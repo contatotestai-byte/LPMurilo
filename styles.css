@@ -650,3 +650,23 @@ section { position: relative; }
   .modules-grid { grid-template-columns: 1fr; }
   .module-num { font-size: var(--text-3xl); }
 }
+
+/* ── Seção com imagem de fundo (Proposta de valor) ── */
+.section-bg {
+  position: relative;
+  background-image: url('assets/section-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 10, 9, 0.65);
+  z-index: 0;
+}
+.section-bg > * {
+  position: relative;
+  z-index: 1;
+}
