@@ -262,7 +262,7 @@ section { position: relative; }
 }
 @media (max-width: 760px) {
   .hero { padding-block: 3.5rem 2.5rem; min-height: 88svh; }
-  .hero-photo { object-position: 70% center; }
+  .hero-photo { object-position: 40% center; }
   .hero-wordmark { width: clamp(190px, 52vw, 260px); margin-bottom: var(--s6); }
   .hero-cta-row { justify-content: center; }
   .hero-actions { gap: var(--s3); width: 100%; }
