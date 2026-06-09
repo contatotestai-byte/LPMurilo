@@ -43,7 +43,7 @@
   <div class="wrap hero-inner">
     <!-- texto sobre o lado esquerdo da imagem -->
     <div class="hero-copy">
-      <img src="assets/logo.webp" alt="Conversando com as Teclas — por Murilo Teixeira" class="hero-wordmark reveal">
+      <img src="assets/logo.webp" alt="Conversando com as Teclas — por Murilo Teixeira" class="hero-wordmark" width="645" height="387" fetchpriority="high">
       <h1 class="display reveal" id="headline" style="font-size: var(--text-hero);">
         <span class="line">O método que destrava</span>
         <span class="line">tecladistas — e faz você</span>
@@ -270,7 +270,7 @@
 
     <div class="urgency reveal">
       <span class="pulse"></span>
-      <span id="urgency-text">Preço de lançamento — quando essa fase encerrar, o valor sobe. Garanta agora pelo menor preço.</span>
+      <span id="urgency-text">Você pode continuar repetindo os mesmos padrões por mais um ano — ou começar a semana que vem soando diferente.</span>
     </div>
   </div>
 </section>
@@ -399,86 +399,7 @@
   });
 </script>
 
-<!-- ═══════════════ TWEAKS (A/B test controls) ═══════════════ -->
-<div id="tweaks-root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "headline": "B",
-  "urgency": "simples",
-  "accent": "#00E571"
-}/*EDITMODE-END*/;
-
-const HEADLINES = {
-  A: '<span class="line">Você sabe tocar. Mas por que,</span><span class="line">toda vez que improvisa,</span><span class="line green">tudo soa igual?</span>',
-  B: '<span class="line">O método que destrava</span><span class="line">tecladistas — e faz você</span><span class="line green">soar musical de verdade</span>',
-  C: '<span class="line">O segredo que separa quem</span><span class="line">"toca bem" de quem faz</span><span class="line green">todo mundo parar pra ouvir</span>'
-};
-const HEADLINE_LABELS = { A: 'A · Provocativa', B: 'B · Promessa', C: 'C · Curiosidade' };
-
-const URGENCY = {
-  lancamento: 'Preço de lançamento — quando essa fase encerrar, o valor sobe. Garanta agora pelo menor preço.',
-  bonus: 'Os bônus desta turma encerram em breve. Depois disso, o curso continua — os bônus, não.',
-  simples: 'Você pode continuar repetindo os mesmos padrões por mais um ano — ou começar a semana que vem soando diferente.'
-};
-const URGENCY_LABELS = { lancamento: 'Lançamento', bonus: 'Bônus', simples: 'Decisão' };
-
-function hexToRgb(hex) {
-  const h = hex.replace('#', '');
-  return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
-}
-function lighten([r,g,b], amt) {
-  const m = (c) => Math.round(c + (255 - c) * amt);
-  return `rgb(${m(r)}, ${m(g)}, ${m(b)})`;
-}
-
-function TweaksApp() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-
-  React.useEffect(() => {
-    const h = document.querySelector('#headline');
-    if (h) h.innerHTML = HEADLINES[t.headline] || HEADLINES.B;
-  }, [t.headline]);
-
-  React.useEffect(() => {
-    const u = document.querySelector('#urgency-text');
-    if (u) u.textContent = URGENCY[t.urgency] || URGENCY.lancamento;
-  }, [t.urgency]);
-
-  React.useEffect(() => {
-    const root = document.documentElement;
-    const rgb = hexToRgb(t.accent);
-    const s = rgb.join(',');
-    root.style.setProperty('--green', t.accent);
-    root.style.setProperty('--green-light', lighten(rgb, 0.32));
-    root.style.setProperty('--green-dim', `rgba(${s},0.10)`);
-    root.style.setProperty('--green-glow', `rgba(${s},0.25)`);
-    root.style.setProperty('--green-border', `rgba(${s},0.30)`);
-    root.style.setProperty('--shadow-green', `0 0 20px rgba(${s},0.35), 0 0 60px rgba(${s},0.12)`);
-  }, [t.accent]);
-
-  return (
-    <TweaksPanel title="Tweaks">
-      <TweakSection label="Teste A/B" />
-      <TweakRadio label="Headline" value={t.headline}
-                  options={[{value:'A',label:'A · Provocativa'},{value:'B',label:'B · Promessa'},{value:'C',label:'C · Curiosidade'}]}
-                  onChange={(v) => setTweak('headline', v)} />
-      <TweakRadio label="Urgência" value={t.urgency}
-                  options={[{value:'lancamento',label:'Lançamento'},{value:'bonus',label:'Bônus'},{value:'simples',label:'Decisão'}]}
-                  onChange={(v) => setTweak('urgency', v)} />
-      <TweakSection label="Identidade" />
-      <TweakColor label="Cor de acento" value={t.accent}
-                  options={['#00E571', '#FF7A45', '#7C9BFF', '#FFC53D']}
-                  onChange={(v) => setTweak('accent', v)} />
-    </TweaksPanel>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
-</script>
+<!-- tweaks panel removido em produção -->
 
 
 </body>

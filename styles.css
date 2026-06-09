@@ -193,13 +193,22 @@ section { position: relative; }
 .cta-band .btn-xl { width: auto; max-width: none; }
 
 /* ── PULSE (botão de compra) ── */
-.btn-pulse { animation: btnPulse 2.2s var(--ease-out) infinite; }
-@keyframes btnPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,113,0.45), 0 0 20px rgba(0,229,113,0.35); }
-  50% { box-shadow: 0 0 0 14px rgba(0,229,113,0), 0 0 30px rgba(0,229,113,0.45); }
+.btn-pulse { position: relative; }
+.btn-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(0,229,113,0.5);
+  animation: btnPulse 2.2s ease-out infinite;
+  pointer-events: none;
 }
-.btn-pulse:hover { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .btn-pulse { animation: none; } }
+@keyframes btnPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+.btn-pulse:hover::after { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .btn-pulse::after { animation: none; } }
 
 /* ============================================================
    NAV
@@ -614,9 +623,18 @@ section { position: relative; }
 }
 .whats-float .whats-ico { width: 30px; height: 30px; }
 .whats-float:hover { transform: scale(1.08); box-shadow: 0 10px 34px rgba(0,0,0,0.5), 0 0 0 10px rgba(37,211,102,0.18); }
+.whats-float::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(37,211,102,0.5);
+  animation: whatsPulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
 @keyframes whatsPulse {
-  0%, 100% { box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 0 0 rgba(37,211,102,0.35); }
-  50% { box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 0 12px rgba(37,211,102,0); }
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 @media (max-width: 760px) { .whats-float { bottom: calc(64px + 1rem); width: 52px; height: 52px; } .whats-float .whats-ico { width: 26px; height: 26px; } }
 @media (prefers-reduced-motion: reduce) { .whats-float { animation: none; } }
