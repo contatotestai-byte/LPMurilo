@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="assets/hero-murilo.jpg" as="image">
+<link rel="preload" href="assets/hero-murilo.jpg" as="image" fetchpriority="high" media="(min-width: 761px)">
+<link rel="preload" href="assets/hero-murilo-mobile.jpg" as="image" fetchpriority="high" media="(max-width: 760px)">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
@@ -36,7 +37,10 @@
 <!-- ═══════════════ HERO ═══════════════ -->
 <header class="hero" data-screen-label="Hero">
   <div class="hero-bg">
-    <img src="assets/hero-murilo.jpg" alt="Murilo Teixeira ao teclado" class="hero-photo" fetchpriority="high">
+    <img src="assets/hero-murilo.jpg"
+         srcset="assets/hero-murilo-mobile.jpg 600w, assets/hero-murilo.jpg 1551w"
+         sizes="100vw"
+         alt="Murilo Teixeira ao teclado" class="hero-photo" fetchpriority="high">
     <div class="hero-scrim"></div>
   </div>
 
@@ -335,7 +339,7 @@
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer class="footer">
   <div class="wrap footer-inner">
-    <img src="assets/logo.webp" alt="Conversando com as Teclas">
+    <img src="assets/logo.webp" alt="Conversando com as Teclas" width="645" height="387" loading="lazy">
     <div class="links">
       <a href="#oferta">Garantir vaga</a>
       <a href="#">Suporte</a>
@@ -361,41 +365,44 @@
 </a>
 
 <script>
-  // Nav background on scroll
-  const nav = document.getElementById('nav');
-  const sticky = document.getElementById('stickyCta');
-  const onScroll = () => {
-    const y = window.scrollY;
-    if (nav) nav.classList.toggle('scrolled', y > 40);
-    if (sticky) sticky.classList.toggle('show', y > window.innerHeight * 0.9);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-  // (Hero is static-visible — no entrance animation to stagger.)
-
-  // Close other FAQ/objection details on open (accordion behavior per group)
-  document.querySelectorAll('.faq-list, .obj-list').forEach((group) => {
-    const items = group.querySelectorAll('details');
-    items.forEach((d) => d.addEventListener('toggle', () => {
-      if (d.open) items.forEach((o) => { if (o !== d) o.open = false; });
-    }));
-  });
-
-  // ── WhatsApp: defina o número/URL aqui (a indicar) ──
-  // Ex.: 'https://wa.me/5511999999999'
+  // WhatsApp — roda imediatamente (crítico)
   const WHATSAPP_URL = 'https://wa.me/5511998266235';
   document.querySelectorAll('.js-whats').forEach((a) => {
     a.setAttribute('href', WHATSAPP_URL);
     if (WHATSAPP_URL.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+
+  // Tudo o resto adiado para depois do paint inicial
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      // Nav background on scroll — innerHeight cacheado para evitar reflow
+      const nav = document.getElementById('nav');
+      const sticky = document.getElementById('stickyCta');
+      let vh = window.innerHeight;
+      window.addEventListener('resize', () => { vh = window.innerHeight; }, { passive: true });
+      const onScroll = () => {
+        const y = window.scrollY;
+        if (nav) nav.classList.toggle('scrolled', y > 40);
+        if (sticky) sticky.classList.toggle('show', y > vh * 0.9);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Reveal on scroll
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      // Accordion FAQ/objeções
+      document.querySelectorAll('.faq-list, .obj-list').forEach((group) => {
+        const items = group.querySelectorAll('details');
+        items.forEach((d) => d.addEventListener('toggle', () => {
+          if (d.open) items.forEach((o) => { if (o !== d) o.open = false; });
+        }));
+      });
+    }, 0);
   });
 </script>
 
