@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System v2 — Curso Teclado Murilo Teixeira</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   DESIGN SYSTEM v2 — MURILO TEIXEIRA · CURSO DE TECLADO
+   Aesthetic: Modern Music Academy — dark, electric, bold
+   Referência: Universidade do Contrabaixo / Junior Braguinha
+   ============================================================ */
+
+:root {
+  /* ── CORES BASE ── */
+  --bg:           #0A0A0A;
+  --bg-1:         #111111;
+  --bg-2:         #161616;
+  --bg-3:         #1E1E1E;
+  --bg-hover:     #242424;
+
+  /* ── BORDAS ── */
+  --border:       #2A2A2A;
+  --border-md:    #363636;
+  --border-lg:    #444444;
+
+  /* ── ACENTO PRIMÁRIO: Verde Elétrico ── */
+  --green:        #00E571;
+  --green-light:  #4DFFA0;
+  --green-dark:   #00A050;
+  --green-dim:    rgba(0, 229, 113, 0.10);
+  --green-glow:   rgba(0, 229, 113, 0.25);
+  --green-border: rgba(0, 229, 113, 0.30);
+
+  /* ── ACENTO SECUNDÁRIO: Branco ── */
+  --white:        #FFFFFF;
+  --off-white:    #F2F2F2;
+  --text-1:       #FFFFFF;
+  --text-2:       #A8A8A8;
+  --text-3:       #666666;
+  --text-inv:     #0A0A0A;
+
+  /* ── ALERTA / URGÊNCIA ── */
+  --red:          #FF4444;
+  --red-dim:      rgba(255, 68, 68, 0.12);
+  --red-border:   rgba(255, 68, 68, 0.30);
+
+  /* ── TIPOGRAFIA ── */
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Escala tipográfica */
+  --text-xs:   0.6875rem;   /* 11px */
+  --text-sm:   0.8125rem;   /* 13px */
+  --text-base: 1rem;        /* 16px */
+  --text-lg:   1.125rem;    /* 18px */
+  --text-xl:   1.375rem;    /* 22px */
+  --text-2xl:  1.75rem;     /* 28px */
+  --text-3xl:  2.25rem;     /* 36px */
+  --text-4xl:  3rem;        /* 48px */
+  --text-5xl:  4rem;        /* 64px */
+  --text-6xl:  5.5rem;      /* 88px */
+  --text-hero: clamp(3.5rem, 9vw, 8rem);
+
+  /* Leading */
+  --lead-tight:  1.05;
+  --lead-snug:   1.25;
+  --lead-base:   1.55;
+  --lead-loose:  1.75;
+
+  /* Tracking */
+  --track-tight:  -0.02em;
+  --track-base:   0em;
+  --track-wide:   0.06em;
+  --track-wider:  0.12em;
+  --track-widest: 0.2em;
+
+  /* ── ESPAÇAMENTO ── */
+  --s1:  0.25rem;   /* 4 */
+  --s2:  0.5rem;    /* 8 */
+  --s3:  0.75rem;   /* 12 */
+  --s4:  1rem;      /* 16 */
+  --s5:  1.25rem;   /* 20 */
+  --s6:  1.5rem;    /* 24 */
+  --s8:  2rem;      /* 32 */
+  --s10: 2.5rem;    /* 40 */
+  --s12: 3rem;      /* 48 */
+  --s16: 4rem;      /* 64 */
+  --s20: 5rem;      /* 80 */
+  --s24: 6rem;      /* 96 */
+  --s32: 8rem;      /* 128 */
+
+  /* ── BORDAS RADIUS ── */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-full: 9999px;
+
+  /* ── SOMBRAS ── */
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.5);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.6);
+  --shadow-lg:    0 8px 40px rgba(0,0,0,0.7);
+  --shadow-green: 0 0 20px rgba(0,229,113,0.35), 0 0 60px rgba(0,229,113,0.12);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.05);
+
+  /* ── TRANSIÇÕES ── */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --t-fast:    150ms;
+  --t-base:    220ms;
+  --t-slow:    380ms;
+
+  /* ── LAYOUT ── */
+  --max-sm:   640px;
+  --max-md:   768px;
+  --max-lg:   1024px;
+  --max-xl:   1180px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lead-base);
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-md); border-radius: 3px; }
+
+/* ============================================================
+   DS VIEWER LAYOUT
+   ============================================================ */
+.page { max-width: 1100px; margin: 0 auto; padding: var(--s16) var(--s6); }
+
+.ds-header {
+  padding-bottom: var(--s16);
+  margin-bottom: var(--s20);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.ds-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -40px; right: -40px; bottom: 0;
+  background: radial-gradient(ellipse 70% 100% at 20% 50%, rgba(0,229,113,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.version-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-widest);
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid var(--green-border);
+  background: var(--green-dim);
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-full);
+  margin-bottom: var(--s6);
+}
+
+.ds-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-6xl);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-tight);
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: var(--s4);
+}
+
+.ds-name em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.ds-desc {
+  font-size: var(--text-lg);
+  color: var(--text-2);
+  font-weight: 300;
+  max-width: 560px;
+  line-height: var(--lead-loose);
+}
+
+/* Seções */
+.section { margin-bottom: var(--s32); }
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--green);
+  letter-spacing: var(--track-widest);
+  text-transform: uppercase;
+  margin-bottom: var(--s3);
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.section-tag::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-4xl);
+  letter-spacing: var(--track-tight);
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: var(--s8);
+  line-height: var(--lead-tight);
+}
+
+/* Showcase box */
+.showcase {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s8);
+  margin-bottom: var(--s4);
+}
+
+.showcase + .showcase { margin-top: var(--s4); }
+
+.showcase-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-3);
+  letter-spacing: var(--track-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--s5);
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--border);
+}
+
+.flex-row { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: flex-start; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s4); }
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .ds-name { font-size: var(--text-4xl); }
+}
+
+/* ============================================================
+   1. PALETA
+   ============================================================ */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--s3); }
+
+.swatch { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+
+.swatch-color { height: 72px; }
+
+.swatch-info {
+  background: var(--bg-2);
+  padding: var(--s2) var(--s3);
+}
+
+.swatch-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-2);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+/* ============================================================
+   2. TIPOGRAFIA
+   ============================================================ */
+.type-block {
+  padding: var(--s6) var(--s8);
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  margin-bottom: var(--s4);
+}
+
+.type-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: var(--track-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--s4);
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--border);
+}
+
+.t-hero {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-hero);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-tight);
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-5xl);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-tight);
+  text-transform: uppercase;
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-4xl);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-tight);
+  text-transform: uppercase;
+}
+
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-snug);
+  text-transform: uppercase;
+}
+
+.t-subhead {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  line-height: var(--lead-snug);
+  color: var(--text-1);
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--lead-loose);
+  color: var(--text-2);
+}
+
+.t-small {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--text-sm);
+  color: var(--text-3);
+  line-height: var(--lead-base);
+}
+
+.t-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--green);
+  letter-spacing: var(--track-wide);
+}
+
+.t-green { color: var(--green); }
+.t-dim   { color: var(--text-2); }
+
+/* ============================================================
+   3. BOTÕES
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all var(--t-base) var(--ease-out);
+  position: relative;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* PRIMARY */
+.btn-primary {
+  background: var(--green);
+  color: var(--text-inv);
+  padding: var(--s4) var(--s8);
+  border-radius: var(--r-sm);
+  font-size: var(--text-base);
+  box-shadow: var(--shadow-green);
+}
+
+.btn-primary:hover {
+  background: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(0,229,113,0.5), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+/* PRIMARY XL */
+.btn-primary-xl {
+  background: var(--green);
+  color: var(--text-inv);
+  padding: var(--s5) var(--s12);
+  border-radius: var(--r-sm);
+  font-size: var(--text-xl);
+  box-shadow: var(--shadow-green);
+  width: 100%;
+  max-width: 520px;
+}
+
+.btn-primary-xl:hover {
+  background: var(--green-light);
+  transform: translateY(-3px);
+  box-shadow: 0 0 48px rgba(0,229,113,0.55), 0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* OUTLINE */
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  padding: var(--s4) var(--s8);
+  border-radius: var(--r-sm);
+  font-size: var(--text-base);
+  border: 1.5px solid var(--green-border);
+}
+
+.btn-outline:hover {
+  background: var(--green-dim);
+  border-color: var(--green);
+  box-shadow: 0 0 16px rgba(0,229,113,0.2);
+}
+
+/* GHOST */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  padding: var(--s3) var(--s6);
+  border-radius: var(--r-sm);
+  font-size: var(--text-sm);
+  border: 1px solid var(--border-md);
+}
+
+.btn-ghost:hover {
+  color: var(--text-1);
+  border-color: var(--border-lg);
+  background: var(--bg-3);
+}
+
+/* MICRO-COPY */
+.microcopy {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-3);
+  text-align: center;
+  margin-top: var(--s3);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.microcopy span {
+  padding: 0 var(--s3);
+  border-right: 1px solid var(--border-md);
+  line-height: 1;
+}
+
+.microcopy span:last-child { border-right: none; }
+
+/* ============================================================
+   4. BADGES / CHIPS
+   ============================================================ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-full);
+  font-weight: 500;
+}
+
+.chip-green {
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+  color: var(--green);
+}
+
+.chip-red {
+  background: var(--red-dim);
+  border: 1px solid var(--red-border);
+  color: var(--red);
+}
+
+.chip-white {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-md);
+  color: var(--text-2);
+}
+
+/* ============================================================
+   5. CARDS
+   ============================================================ */
+
+/* Card padrão */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+  transition: border-color var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out);
+  box-shadow: var(--shadow-inset);
+}
+
+.card:hover {
+  border-color: var(--border-md);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Card Destaque */
+.card-featured {
+  background: var(--bg-2);
+  border: 1px solid var(--green-border);
+  border-radius: var(--r-lg);
+  padding: var(--s8);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--green-dim) inset, var(--shadow-green);
+}
+
+.card-featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+/* Card Oferta */
+.card-offer {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.card-offer-header {
+  background: var(--green);
+  padding: var(--s4) var(--s6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-offer-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-2xl);
+  text-transform: uppercase;
+  color: var(--text-inv);
+  letter-spacing: var(--track-tight);
+}
+
+.card-offer-badge {
+  background: rgba(0,0,0,0.2);
+  color: var(--text-inv);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-full);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+}
+
+.card-offer-body { padding: var(--s8); }
+
+/* ============================================================
+   6. BLOCOS LP
+   ============================================================ */
+
+/* Benefit item */
+.benefit {
+  display: flex;
+  gap: var(--s4);
+  padding: var(--s5) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.benefit:last-child { border-bottom: none; }
+
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  box-shadow: 0 0 12px rgba(0,229,113,0.15);
+}
+
+.benefit-content strong {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--text-1);
+  margin-bottom: var(--s1);
+}
+
+.benefit-content p {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: var(--lead-base);
+}
+
+/* Pain item */
+.pain {
+  display: flex;
+  gap: var(--s3);
+  align-items: flex-start;
+  padding: var(--s3) 0;
+  font-size: var(--text-base);
+  color: var(--text-2);
+  line-height: var(--lead-base);
+}
+
+.pain-icon {
+  color: var(--red);
+  font-size: var(--text-base);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Value table */
+.vtable { width: 100%; border-collapse: collapse; }
+
+.vtable tr { border-bottom: 1px solid var(--border); }
+
+.vtable td {
+  padding: var(--s4) var(--s5);
+  font-size: var(--text-sm);
+  color: var(--text-2);
+}
+
+.vtable td:first-child { color: var(--text-1); }
+
+.vtable td.strike {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-3);
+  text-decoration: line-through;
+}
+
+.vtable .price-row td { border-top: 2px solid var(--green-border); border-bottom: none; }
+.vtable .price-row td:first-child { font-weight: 700; color: var(--text-1); font-size: var(--text-base); }
+.vtable .price-row td.price-val {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-4xl);
+  color: var(--green);
+  text-decoration: none;
+  text-align: right;
+  letter-spacing: var(--track-tight);
+  line-height: 1;
+  padding-top: var(--s5);
+}
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: var(--s5) 0;
+}
+
+.faq-q {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--text-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: var(--s4);
+}
+
+.faq-q::after {
+  content: '+';
+  color: var(--green);
+  font-size: var(--text-2xl);
+  font-family: var(--font-display);
+  font-weight: 800;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.faq-a {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: var(--lead-loose);
+  margin-top: var(--s3);
+}
+
+/* Guarantee */
+.guarantee {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s8);
+  display: flex;
+  gap: var(--s6);
+  align-items: center;
+}
+
+.guarantee-icon {
+  font-size: 3.5rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 16px rgba(0,229,113,0.4));
+}
+
+.guarantee-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-3xl);
+  text-transform: uppercase;
+  letter-spacing: var(--track-tight);
+  color: var(--white);
+  margin-bottom: var(--s2);
+  line-height: var(--lead-tight);
+}
+
+.guarantee p {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: var(--lead-loose);
+}
+
+/* Urgency */
+.urgency {
+  background: var(--red-dim);
+  border: 1px solid var(--red-border);
+  border-radius: var(--r-md);
+  padding: var(--s4) var(--s6);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  color: var(--red);
+  animation: blink 2.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+/* Number stat */
+.stat {
+  text-align: center;
+  padding: var(--s6);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-5xl);
+  color: var(--green);
+  letter-spacing: var(--track-tight);
+  line-height: 1;
+  margin-bottom: var(--s2);
+}
+
+.stat-label {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  font-weight: 400;
+}
+
+/* Section Headline */
+.s-headline { text-align: center; margin-bottom: var(--s16); }
+
+.s-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--green);
+  letter-spacing: var(--track-widest);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--s4);
+}
+
+.s-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--text-4xl);
+  text-transform: uppercase;
+  letter-spacing: var(--track-tight);
+  line-height: var(--lead-tight);
+  color: var(--white);
+  margin-bottom: var(--s4);
+}
+
+.s-sub {
+  font-size: var(--text-lg);
+  color: var(--text-2);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: var(--lead-loose);
+}
+
+/* Divider */
+.div-line { border: none; border-top: 1px solid var(--border); margin: var(--s8) 0; }
+
+.div-green {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green-border), transparent);
+  margin: var(--s8) 0;
+}
+
+/* Hero background sample */
+.hero-sample {
+  background:
+    radial-gradient(ellipse 60% 70% at 10% 50%, rgba(0,229,113,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 20%, rgba(0,229,113,0.04) 0%, transparent 60%),
+    var(--bg);
+  border-radius: var(--r-lg);
+  padding: var(--s12) var(--s8);
+  border: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-sample::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 64px);
+  pointer-events: none;
+}
+
+/* Token note */
+.token-note {
+  background: var(--bg-1);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--s4) var(--s5);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-2);
+  line-height: var(--lead-loose);
+  margin-top: var(--s6);
+}
+
+/* Token table */
+.token-table { width: 100%; border-collapse: collapse; }
+.token-table tr { border-bottom: 1px solid var(--border); }
+.token-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: var(--track-wider);
+  text-transform: uppercase;
+  padding: var(--s2) var(--s4);
+  padding-bottom: var(--s3);
+}
+.token-table td {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-2);
+  padding: var(--s3) var(--s4);
+}
+.token-table td:first-child { color: var(--green); }
+.token-table tr:last-child { border-bottom: none; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="ds-header">
+    <div class="version-chip">⚡ Design System v2.0</div>
+    <h1 class="ds-name">MURILO<br><em>TEIXEIRA</em></h1>
+    <p class="ds-desc">Sistema visual para o Curso de Teclado — moderno, direto, elétrico. Inspirado na estética da Universidade do Contrabaixo.</p>
+  </header>
+
+  <!-- ═══ 01. CORES ═══ -->
+  <section class="section">
+    <div class="section-tag">01 · Paleta de Cores</div>
+    <h2 class="section-title">CORES</h2>
+
+    <div class="showcase">
+      <div class="showcase-label">Backgrounds & Superfícies</div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0A0A0A;"></div>
+          <div class="swatch-info"><span class="swatch-name">--bg</span><span class="swatch-hex">#0A0A0A · Base</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#111111;"></div>
+          <div class="swatch-info"><span class="swatch-name">--bg-1</span><span class="swatch-hex">#111111 · Cards</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#161616;"></div>
+          <div class="swatch-info"><span class="swatch-name">--bg-2</span><span class="swatch-hex">#161616 · Elevated</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1E1E1E;"></div>
+          <div class="swatch-info"><span class="swatch-name">--bg-3</span><span class="swatch-hex">#1E1E1E · Hover</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2A2A2A;"></div>
+          <div class="swatch-info"><span class="swatch-name">--border</span><span class="swatch-hex">#2A2A2A · Borda</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase">
+      <div class="showcase-label">Acento Primário — Verde Elétrico</div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#00E571;"></div>
+          <div class="swatch-info"><span class="swatch-name">--green</span><span class="swatch-hex">#00E571 · Primário</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#4DFFA0;"></div>
+          <div class="swatch-info"><span class="swatch-name">--green-light</span><span class="swatch-hex">#4DFFA0 · Hover</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#00A050;"></div>
+          <div class="swatch-info"><span class="swatch-name">--green-dark</span><span class="swatch-hex">#00A050 · Press</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(0,229,113,0.10); border: 1px solid rgba(0,229,113,0.3);"></div>
+          <div class="swatch-info"><span class="swatch-name">--green-dim</span><span class="swatch-hex">rgba(0,229,113,.10)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase">
+      <div class="showcase-label">Texto & Urgência</div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF;"></div>
+          <div class="swatch-info"><span class="swatch-name">--text-1</span><span class="swatch-hex">#FFFFFF · Principal</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#A8A8A8;"></div>
+          <div class="swatch-info"><span class="swatch-name">--text-2</span><span class="swatch-hex">#A8A8A8 · Secundário</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#666666;"></div>
+          <div class="swatch-info"><span class="swatch-name">--text-3</span><span class="swatch-hex">#666666 · Muted</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FF4444;"></div>
+          <div class="swatch-info"><span class="swatch-name">--red</span><span class="swatch-hex">#FF4444 · Urgência</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 02. TIPOGRAFIA ═══ -->
+  <section class="section">
+    <div class="section-tag">02 · Tipografia</div>
+    <h2 class="section-title">FONTES & ESCALA</h2>
+
+    <div class="type-block">
+      <div class="type-meta">Hero · Barlow Condensed 900 Italic · clamp(3.5rem → 8rem) · Headlines principais</div>
+      <div class="t-hero">VOCÊ SABE TOCAR.<br><span class="t-green">MAS POR QUÊ TRAVA?</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="type-block">
+        <div class="type-meta">H1 · Barlow Condensed 900 · 4rem (64px)</div>
+        <div class="t-h1">DESTRAVAR<br>SEU <span class="t-green">TECLADO</span></div>
+      </div>
+      <div class="type-block">
+        <div class="type-meta">H2 · Barlow Condensed 800 · 3rem (48px)</div>
+        <div class="t-h2">SEÇÃO DE<br>BENEFÍCIOS</div>
+      </div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-meta">H3 · Barlow Condensed 700 · 2.25rem (36px) · Subtítulos de seção, títulos de card</div>
+      <div class="t-h3">O que você vai aprender no curso</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-meta">Subhead · Barlow 600 · 1.375rem (22px) · Subheadlines, parágrafos de destaque</div>
+      <div class="t-subhead">Aprenda a improvisar, entender harmonia e explorar o teclado com um músico que vive isso nos palcos.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="type-block">
+        <div class="type-meta">Body · Barlow 400 · 1rem · lead-loose · Parágrafos</div>
+        <div class="t-body">Você não é iniciante. Mas na hora de improvisar trava. Isso não é falta de talento — é falta do mapa certo.</div>
+      </div>
+      <div class="type-block">
+        <div class="type-meta">Small · Barlow 300 · 0.8125rem · Micro-copy, apoio</div>
+        <div class="t-small">Acesso imediato · Garantia 7 dias · Cancela quando quiser</div>
+        <br>
+        <div class="type-meta" style="margin-top: 12px;">Mono · JetBrains Mono · Labels, preços, codes</div>
+        <div class="t-mono">LATIN GRAMMY AMBASSADOR · #00E571</div>
+      </div>
+    </div>
+
+    <div class="token-note">
+      Regra: Barlow Condensed (900/800/700) para tudo de impacto visual. Barlow (600/400/300) para leitura. JetBrains Mono para labels, chips, preços, dados técnicos. NUNCA misturar Condensed e normal na mesma linha.
+    </div>
+  </section>
+
+  <!-- ═══ 03. BOTÕES ═══ -->
+  <section class="section">
+    <div class="section-tag">03 · Botões & CTAs</div>
+    <h2 class="section-title">BOTÕES</h2>
+
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Primary — Ação principal · Sempre verde · Com glow</div>
+      <div class="flex-row">
+        <button class="btn btn-primary">🎹 Quero Destravar Meu Teclado</button>
+        <button class="btn btn-primary">Garantir Minha Vaga</button>
+      </div>
+    </div>
+
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Primary XL — CTA isolado de conversão · Full width · Seções de oferta e hero</div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <button class="btn btn-primary-xl">🎹 QUERO DESTRAVAR MEU TECLADO AGORA</button>
+        <div class="microcopy">
+          <span>Acesso imediato</span>
+          <span>12 meses de plataforma</span>
+          <span>Garantia de 7 dias</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase">
+      <div class="showcase-label">Outline & Ghost — CTAs secundários, links de apoio</div>
+      <div class="flex-row">
+        <button class="btn btn-outline">Ver o que está incluso</button>
+        <button class="btn btn-ghost">Ler depoimentos</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04. BADGES ═══ -->
+  <section class="section">
+    <div class="section-tag">04 · Chips & Badges</div>
+    <h2 class="section-title">BADGES</h2>
+
+    <div class="showcase">
+      <div class="showcase-label">Chips — Autoridade, urgência, informação neutra</div>
+      <div class="flex-row">
+        <span class="chip chip-green">🏆 Latin Grammy Ambassador</span>
+        <span class="chip chip-green">✅ Acesso por 12 meses</span>
+        <span class="chip chip-green">⚡ Método Exclusivo</span>
+        <span class="chip chip-red">⏰ Preço de Lançamento</span>
+        <span class="chip chip-red">🔥 Vagas Limitadas</span>
+        <span class="chip chip-white">🎹 Para Tecladistas</span>
+        <span class="chip chip-white">Garantia 7 dias</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05. CARDS ═══ -->
+  <section class="section">
+    <div class="section-tag">05 · Cards</div>
+    <h2 class="section-title">CARDS</h2>
+
+    <div class="grid-2" style="margin-bottom: var(--s4);">
+      <div>
+        <div class="showcase-label" style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:var(--track-wider);text-transform:uppercase;margin-bottom:var(--s3);">Card padrão — hover: borda ilumina</div>
+        <div class="card">
+          <div class="chip chip-green" style="margin-bottom: var(--s4);">🎵 Benefício</div>
+          <div class="t-h3" style="margin-bottom: var(--s2);">Improvise sem travar</div>
+          <p class="t-body">Você decide o que toca — não o pânico. Finalmente expressa o que sente pelo instrumento.</p>
+        </div>
+      </div>
+      <div>
+        <div class="showcase-label" style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:var(--track-wider);text-transform:uppercase;margin-bottom:var(--s3);">Card destaque — linha verde no topo + glow</div>
+        <div class="card-featured">
+          <div class="chip chip-green" style="margin-bottom: var(--s4);">⭐ Mais popular</div>
+          <div class="stat-number">R$197</div>
+          <div class="t-small" style="margin-top: var(--s2); color: var(--text-2);">Acesso completo · 12 meses</div>
+          <br>
+          <button class="btn btn-primary" style="width: 100%; margin-top: var(--s4);">Quero Começar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-label" style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:var(--track-wider);text-transform:uppercase;margin-bottom:var(--s3);">Card Oferta — para stack de valor</div>
+    <div class="card-offer">
+      <div class="card-offer-header">
+        <div class="card-offer-title">Curso Completo de Teclado</div>
+        <div class="card-offer-badge">Acesso Imediato</div>
+      </div>
+      <div class="card-offer-body">
+        <table class="vtable">
+          <tr><td>Método completo de improviso e harmonia</td><td class="strike">R$497</td></tr>
+          <tr><td>Acesso por 12 meses na plataforma</td><td class="strike">R$197</td></tr>
+          <tr><td>Atualizações sem custo adicional</td><td class="strike">R$97</td></tr>
+          <tr class="price-row"><td>Seu investimento hoje</td><td class="price-val">R$197</td></tr>
+        </table>
+        <div style="margin-top: var(--s6); display: flex; flex-direction: column; align-items: center;">
+          <button class="btn btn-primary-xl" style="max-width: 100%;">🎹 GARANTIR MINHA VAGA AGORA</button>
+          <div class="microcopy"><span>Acesso imediato</span><span>12 meses</span><span>Garantia 7 dias</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 06. BLOCOS LP ═══ -->
+  <section class="section">
+    <div class="section-tag">06 · Blocos de Landing Page</div>
+    <h2 class="section-title">PADRÕES DE CONTEÚDO</h2>
+
+    <!-- Benefit list -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Benefit List — Seção de transformações</div>
+      <div class="benefit">
+        <div class="benefit-icon">🎵</div>
+        <div class="benefit-content">
+          <strong>Improvise com confiança — sem travar, sem repetir</strong>
+          <p>Você decide o que toca, não o seu pânico. Finalmente expressa o que sente pelo instrumento.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🎹</div>
+        <div class="benefit-content">
+          <strong>A harmonia deixa de ser um obstáculo</strong>
+          <p>Você entende de verdade o que está tocando e passa a usar isso criativamente no palco e na igreja.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🚀</div>
+        <div class="benefit-content">
+          <strong>Seu teto invisível desaparece</strong>
+          <p>Você finalmente sente que está evoluindo — não só "tocando" no automático.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pain list -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Pain List — Identificação de dor</div>
+      <div class="pain"><span class="pain-icon">✗</span>Você toca há anos, mas sente que não evoluiu de verdade</div>
+      <div class="pain"><span class="pain-icon">✗</span>Na hora de improvisar, sua cabeça trava e você volta sempre aos mesmos padrões</div>
+      <div class="pain"><span class="pain-icon">✗</span>Você assiste outros tecladistas e pensa: "Como eles chegam nessas notas?"</div>
+      <div class="pain"><span class="pain-icon">✗</span>Já assistiu vídeo atrás de vídeo no YouTube e continuou no mesmo lugar</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Stats Numbers — Prova social quantitativa</div>
+      <div class="grid-3">
+        <div class="stat">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Anos de experiência em palco</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">🏆</div>
+          <div class="stat-label t-green" style="color:var(--green); font-weight:600; font-size: var(--text-sm);">Latin Grammy Ambassador</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Dias de garantia total</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">FAQ — Perguntas frequentes</div>
+      <div class="faq-item">
+        <div class="faq-q">Preciso saber ler partitura para fazer o curso?</div>
+        <div class="faq-a">Não é obrigatório. O método foca em prática — você vai aprender a ouvir, sentir e aplicar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">O curso funciona para teclado de igreja?</div>
+        <div class="faq-a">Sim. Murilo é músico de palco e de ministério. O método se aplica nos dois contextos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">E se eu não gostar?</div>
+        <div class="faq-a">7 dias de garantia incondicional. Peça o reembolso e devolvemos 100% — sem perguntas.</div>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Guarantee Block</div>
+      <div class="guarantee">
+        <div class="guarantee-icon">🛡️</div>
+        <div>
+          <div class="guarantee-title">GARANTIA DE 7 DIAS</div>
+          <p>Acesse, assista, experimente. Se por qualquer motivo não for pra você — devolvemos 100% do seu dinheiro. Sem perguntas. Sem burocracia.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Urgency -->
+    <div class="showcase" style="margin-bottom: var(--s4);">
+      <div class="showcase-label">Urgency Banner</div>
+      <div class="urgency">⚠️ Este é o preço de lançamento — quando encerrar, o valor sobe. Garanta agora.</div>
+    </div>
+
+    <!-- Section headline -->
+    <div class="showcase">
+      <div class="showcase-label">Section Headline Pattern — Cabeçalho de seção</div>
+      <div class="s-headline" style="margin-bottom: 0;">
+        <span class="s-eyebrow">O que você vai aprender</span>
+        <div class="s-title">DESTRAVE SEU<br>TECLADO DE VEZ</div>
+        <p class="s-sub">Um método construído por um tecladista de estrada, para quem já tem base e precisa ir além.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07. HERO BG ═══ -->
+  <section class="section">
+    <div class="section-tag">07 · Background Hero</div>
+    <h2 class="section-title">BACKGROUND PATTERNS</h2>
+
+    <div class="hero-sample">
+      <div style="position: relative; z-index: 1;">
+        <span class="chip chip-green" style="margin-bottom: var(--s6); display: inline-flex;">🏆 Latin Grammy Ambassador</span>
+        <div class="t-hero" style="margin-bottom: var(--s6);">VOCÊ SABE TOCAR.<br><span class="t-green">MAS POR QUÊ TRAVA?</span></div>
+        <p class="t-body" style="max-width: 540px; margin: 0 auto var(--s8);">Aprenda a improvisar com musicalidade, entender harmonia na prática e explorar o teclado de um jeito que você nunca imaginou.</p>
+        <button class="btn btn-primary-xl" style="margin: 0 auto;">🎹 QUERO DESTRAVAR MEU TECLADO</button>
+        <div class="microcopy" style="margin-top: var(--s3);"><span>Acesso imediato</span><span>12 meses</span><span>Garantia 7 dias</span></div>
+      </div>
+    </div>
+
+    <div class="token-note">
+      Hero BG: radial-gradient verde muito sutil (6% opacidade) + grid overlay com linhas brancas (1.5% opacidade). Nunca use gradients sólidos — o efeito deve ser quase imperceptível, apenas adicionando profundidade.
+    </div>
+  </section>
+
+  <!-- ═══ 08. TOKENS ═══ -->
+  <section class="section">
+    <div class="section-tag">08 · Tokens de Referência</div>
+    <h2 class="section-title">TOKENS RÁPIDOS</h2>
+
+    <div class="grid-2">
+      <div class="showcase">
+        <div class="showcase-label">Espaçamento</div>
+        <table class="token-table">
+          <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+          <tr><td>--s4</td><td>16px</td><td>gap interno, padding small</td></tr>
+          <tr><td>--s6</td><td>24px</td><td>padding card, gap padrão</td></tr>
+          <tr><td>--s8</td><td>32px</td><td>padding card featured</td></tr>
+          <tr><td>--s12</td><td>48px</td><td>seções menores</td></tr>
+          <tr><td>--s16</td><td>64px</td><td>espaçamento de seção</td></tr>
+          <tr><td>--s24</td><td>96px</td><td>padding vertical seção</td></tr>
+          <tr><td>--s32</td><td>128px</td><td>hero, seções grandes</td></tr>
+        </table>
+      </div>
+      <div class="showcase">
+        <div class="showcase-label">Radius & Sombras</div>
+        <table class="token-table">
+          <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+          <tr><td>--r-xs</td><td>3px</td><td>micro-elementos</td></tr>
+          <tr><td>--r-sm</td><td>6px</td><td>botões, chips</td></tr>
+          <tr><td>--r-md</td><td>10px</td><td>urgency, elementos menores</td></tr>
+          <tr><td>--r-lg</td><td>16px</td><td>cards, showcases</td></tr>
+          <tr><td>--r-xl</td><td>24px</td><td>modais, containers grandes</td></tr>
+          <tr><td>--r-full</td><td>9999px</td><td>pills, badges, chips</td></tr>
+          <tr><td>--shadow-green</td><td>glow verde</td><td>btn-primary, card-featured</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="token-note">
+      Import de fontes (adicionar no &lt;head&gt;):<br>
+      https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800&amp;family=Barlow:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

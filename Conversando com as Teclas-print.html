@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversando com as Teclas — por Murilo Teixeira</title>
+<meta name="description" content="O método que destrava tecladistas que já sabem o básico — e faz você finalmente soar musical de verdade. Por Murilo Teixeira, Latin Grammy Ambassador.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style id="__print-styles">
+@media print {
+  @page { size: portrait; margin: 1cm; }
+  html, body { background: #0A0A0A !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Freeze animations at END state (do not revert fade-ins) */
+  *, *::before, *::after {
+    animation-delay: -99s !important; animation-duration: .001s !important;
+    animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+    animation-play-state: running !important; transition-duration: 0s !important;
+  }
+
+  /* Everything visible (reveal/hero resting state) */
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  /* Hide interactive-only chrome */
+  .nav, .sticky-cta, .whats-float, .scroll-hint, #tweaks-root, .tweaks-panel { display: none !important; }
+
+  /* Hero: no min-height so it doesn't eat a full page; keep two-column */
+  .hero { min-height: 0 !important; padding-block: 1.5rem 1rem !important; page-break-after: avoid; }
+  .hero-frame { box-shadow: none !important; }
+
+  /* Keep logical blocks together where possible */
+  section, header, footer { break-inside: avoid; }
+  .module, .learn-card, .testi, .benefit, .obj, .faq-item, .offer-card, .guarantee, .pain { break-inside: avoid; }
+  .modules-grid, .testi-masonry { break-inside: auto; }
+
+  /* Tame heavy glows for print clarity */
+  .offer-card, .guarantee { box-shadow: none !important; }
+  .pad { padding-block: 2.2rem !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav" id="nav">
+  <img src="assets/logo.webp" alt="Conversando com as Teclas" class="nav-logo">
+  <a href="#oferta" class="btn btn-primary">Garantir minha vaga</a>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero" data-screen-label="Hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+
+  <div class="wrap hero-inner">
+    <!-- LEFT — texto -->
+    <div class="hero-copy">
+      <h1 class="display reveal" id="headline" style="font-size: var(--text-hero);">
+        <span class="line">O método que destrava</span>
+        <span class="line">tecladistas — e faz você</span>
+        <span class="line green">soar musical de verdade</span>
+      </h1>
+
+      <p class="hero-sub reveal" id="subheadline">
+        Aprenda a improvisar com musicalidade, entender a harmonia na prática e explorar o teclado de um jeito que você nunca imaginou — <strong>com quem vive disso nos maiores palcos e igrejas do país.</strong>
+      </p>
+    </div>
+
+    <!-- RIGHT — imagem / marca -->
+    <div class="hero-visual reveal">
+      <div class="hero-frame">
+        <img src="assets/hero.webp" alt="Murilo Teixeira tocando ao vivo" class="hero-frame-photo">
+        <div class="hero-frame-scrim"></div>
+        <img src="assets/logo.webp" alt="Conversando com as Teclas — por Murilo Teixeira" class="hero-frame-wordmark">
+      </div>
+      <div class="hero-frame-glow"></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Role</span>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<!-- ═══════════════ CTA BAND (logo após a hero) ═══════════════ -->
+<section class="cta-band" data-screen-label="CTA pós-hero">
+  <div class="wrap">
+    <div class="cta-band-inner reveal">
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="#oferta" class="btn btn-xl btn-pulse" style="width: auto;">Quero destravar meu teclado agora</a>
+        <a href="#whatsapp" class="btn btn-whats js-whats">
+          <svg class="whats-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.2 1.3-4.6-.3-.5C3.9 20.7 3.2 18.4 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.8 16 28.8zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.6-.2-.8.2-.2.4-.9 1.3-1.1 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="microcopy">
+        <span>Acesso imediato por 12 meses</span>
+        <span>Garantia de 7 dias</span>
+        <span>R$197 no total</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VALUE PROP / ABERTURA ═══════════════ -->
+<section class="pad" data-screen-label="Proposta de valor">
+  <div class="wrap wrap-text">
+    <h2 class="lead-quote reveal" style="margin-bottom: var(--s10);">
+      Você já sabe as notas. Já passou pelos acordes. Já acompanha uma música.<br>
+      <span class="green">Mas na hora de improvisar… trava.</span>
+    </h2>
+
+    <div class="prose reveal">
+      <p>Na hora de sair do padrão, você repete os mesmos licks de sempre. Na hora de explorar o instrumento, bate numa parede invisível.</p>
+      <p><strong>Isso não é falta de talento. É falta do mapa certo.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ DOR ═══════════════ -->
+<section class="pain-section pad" data-screen-label="Identificação da dor">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2 class="h2">Isso soa familiar?</h2>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain"><span class="pain-icon">✗</span>Você toca há anos, mas sente que não evoluiu de verdade nos últimos meses.</div>
+      <div class="pain"><span class="pain-icon">✗</span>Na hora de improvisar, sua cabeça trava e você volta sempre para os mesmos padrões.</div>
+      <div class="pain"><span class="pain-icon">✗</span>Você assiste outros tecladistas e pensa: "Como eles chegam nessas notas?"</div>
+      <div class="pain"><span class="pain-icon">✗</span>Você entende teoria, mas na prática a harmonia parece um bicho de sete cabeças.</div>
+      <div class="pain"><span class="pain-icon">✗</span>Você se sente preso num teto invisível — sabe que tem mais dentro de você.</div>
+      <div class="pain"><span class="pain-icon">✗</span>Já assistiu vídeo atrás de vídeo no YouTube e continuou no mesmo lugar.</div>
+    </div>
+
+    <div class="pain-after reveal">
+      <p class="subhead">Se você se identificou com pelo menos um desses pontos, você está exatamente no lugar certo.</p>
+      <p class="body">O problema não é você. É que ninguém te ensinou o que realmente importa para um tecladista que quer se desenvolver de verdade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SOLUÇÃO + MÓDULOS ═══════════════ -->
+<section class="pad" id="modulos" data-screen-label="Solução / Módulos">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2 class="h2">Não é mais teoria.<br>É o mapa que faltava.</h2>
+      <p>O curso não foi feito para iniciantes aprenderem a tocar. Foi feito para músicos como você — que já têm base — finalmente entenderem o que separa quem "toca direito" de quem faz o instrumento cantar.</p>
+    </div>
+
+    <div class="modules-grid">
+      <article class="module reveal"><span class="module-num">01</span><div class="module-body"><h4>Pentatônica Moderna</h4><p>Uma nova visão da pentatônica para criar linhas e cores muito além do convencional.</p></div></article>
+      <article class="module reveal"><span class="module-num">02</span><div class="module-body"><h4>Poliacordes</h4><p>Sobreposição de acordes para gerar novas cores harmônicas com sofisticação.</p></div></article>
+      <article class="module reveal"><span class="module-num">03</span><div class="module-body"><h4>Spread Voicings</h4><p>Voicings abertos que dão amplitude e modernidade ao seu acompanhamento.</p></div></article>
+      <article class="module reveal"><span class="module-num">04</span><div class="module-body"><h4>Acordes Quartais</h4><p>A sonoridade quartal aplicada ao jazz, gospel e à música brasileira.</p></div></article>
+      <article class="module reveal"><span class="module-num">05</span><div class="module-body"><h4>Acordes em Bloco</h4><p>Técnica clássica do piano para modernizar melodias e harmonizar com elegância.</p></div></article>
+      <article class="module reveal"><span class="module-num">06</span><div class="module-body"><h4>Aproximações Cromáticas</h4><p>Conduções cromáticas para enriquecer linhas, acordes e melodias.</p></div></article>
+      <article class="module reveal"><span class="module-num">07</span><div class="module-body"><h4>Rearmonização &amp; Substituições</h4><p>Reinterprete progressões com substituições criativas e harmonia avançada.</p></div></article>
+      <article class="module reveal"><span class="module-num">08</span><div class="module-body"><h4>Harmonia Avançada &amp; Texturas</h4><p>Tensões, voicings híbridos e estruturas simétricas para um som contemporâneo.</p></div></article>
+      <article class="module reveal"><span class="module-num">09</span><div class="module-body"><h4>Acompanhamento &amp; Improvisação</h4><p>Recursos para acompanhar cantores, trios e bandas com personalidade.</p></div></article>
+      <article class="module reveal"><span class="module-num">10</span><div class="module-body"><h4>Arranjo, Criação &amp; Musicalidade</h4><p>Unindo jazz, gospel e MPB em um vocabulário próprio e expressivo.</p></div></article>
+    </div>
+
+    <div class="cta-group reveal" style="margin-top: clamp(2.5rem,5vw,4rem);">
+      <a href="#oferta" class="btn btn-outline">Quero acessar os 10 módulos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AUTORIDADE + PROVA SOCIAL ═══════════════ -->
+<section class="authority pad" data-screen-label="Prova social">
+  <div class="wrap">
+    <div class="authority-grid">
+      <div class="authority-photo reveal">
+        <img src="assets/hero.webp" alt="Murilo Teixeira tocando ao vivo">
+      </div>
+      <div class="reveal">
+        <h3 class="h3">Não é só professor.<br>É <span class="green">músico de estrada.</span></h3>
+        <div class="grammy-line">
+          <span class="ico">🏆</span>
+          <span class="txt">
+            <strong>Latin Grammy Ambassador</strong>
+            <span>Reconhecimento da Recording Academy — uma das maiores honrarias da música latina no mundo.</span>
+          </span>
+        </div>
+        <div class="prose">
+          <p>Alguém que executa o que ensina toda semana, em palcos e igrejas de verdade. Ele entende na prática o que você enfrenta — porque já enfrentou e superou.</p>
+          <p>E passou anos descobrindo o caminho mais curto entre <strong>onde você está</strong> e <strong>onde quer chegar.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPOIMENTOS REAIS -->
+    <div class="testi-wrap">
+      <div class="s-head reveal" style="margin-bottom: var(--s10);">
+        <h2 class="h2">Conversas reais de quem<br>já está dentro</h2>
+      </div>
+
+      <div class="testi-masonry">
+        <figure class="testi reveal"><img src="assets/depo-1.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · WhatsApp</figcaption></figure>
+        <figure class="testi reveal"><img src="assets/depo-4.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · Direct</figcaption></figure>
+        <figure class="testi reveal"><img src="assets/depo-2.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · WhatsApp</figcaption></figure>
+        <figure class="testi reveal"><img src="assets/depo-5.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · Direct</figcaption></figure>
+        <figure class="testi reveal"><img src="assets/depo-3.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · WhatsApp</figcaption></figure>
+        <figure class="testi reveal"><img src="assets/depo-6.webp" alt="Depoimento de aluno" loading="lazy"><figcaption class="testi-cap"><span class="dot"></span>Aluno · Direct</figcaption></figure>
+      </div>
+      <p class="testi-note reveal">Mensagens reais enviadas por alunos do curso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ OFERTA ═══════════════ -->
+<section class="offer-section pad" id="oferta" data-screen-label="Oferta">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2 class="h2">O que você leva hoje</h2>
+    </div>
+
+    <div class="offer-card reveal">
+      <div class="offer-head">
+        <span class="title">Conversando com as Teclas</span>
+        <span class="badge">Acesso imediato</span>
+      </div>
+      <div class="offer-body">
+        <table class="vtable">
+          <tr><td>Acesso completo ao método de improviso e harmonia</td><td class="strike">R$497</td></tr>
+          <tr><td>Acesso por 12 meses — no seu ritmo</td><td class="strike">R$197</td></tr>
+          <tr><td>Suporte e atualizações dentro do período</td><td class="strike">R$97</td></tr>
+          <tr class="total-row"><td>Valor total</td><td class="strike">R$791</td></tr>
+          <tr class="price-row"><td>Seu investimento hoje</td><td class="price-val">R$197</td></tr>
+        </table>
+
+        <p class="offer-pitch">Por apenas <strong>R$197</strong> — menos do que uma hora com um professor particular — você tem acesso ao método completo de um <strong>Latin Grammy Ambassador.</strong></p>
+
+        <div class="offer-cta">
+          <a href="#oferta" class="btn btn-xl btn-pulse" style="max-width: 100%;">Quero destravar meu teclado agora</a>
+          <div class="microcopy">
+            <span>Acesso imediato</span>
+            <span>12 meses de plataforma</span>
+            <span>Garantia de 7 dias</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ QUEBRA DE OBJEÇÕES ═══════════════ -->
+<section class="pad" data-screen-label="Objeções">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <h2 class="h2">"Mas e se não for pra mim?"</h2>
+    </div>
+
+    <div class="obj-list">
+      <details class="obj reveal">
+        <summary><span class="q-mark">?</span>"Já fiz outros cursos e não evoluí…"<span class="plus">+</span></summary>
+        <div class="obj-a">Faz sentido desconfiar. A maioria dos cursos ensina teoria ou recomeça do zero — e nenhum dos dois serve pra quem já sabe o básico. Esse método foi desenhado <strong>especificamente para músicos que já têm base</strong> e precisam destravar. É diferente. E você tem 7 dias para comprovar isso.</div>
+      </details>
+      <details class="obj reveal">
+        <summary><span class="q-mark">?</span>"Não tenho tempo para fazer um curso agora…"<span class="plus">+</span></summary>
+        <div class="obj-a">O acesso é por 12 meses. Você não precisa assistir tudo em uma semana — <strong>avança no seu ritmo</strong>, encaixa na sua rotina e ainda assim sente a evolução, porque o método é direto ao ponto, sem enrolação.</div>
+      </details>
+      <details class="obj reveal">
+        <summary><span class="q-mark">?</span>"R$197 é muito pra mim agora…"<span class="plus">+</span></summary>
+        <div class="obj-a">Coloca na balança: quanto você já gastou em aulas particulares sem resultado consistente? <strong>R$197 por 12 meses</strong> de acesso a um método de Latin Grammy Ambassador é menos do que uma única hora com qualquer professor de bairro.</div>
+      </details>
+      <details class="obj reveal">
+        <summary><span class="q-mark">?</span>"Serei bom o suficiente para acompanhar?"<span class="plus">+</span></summary>
+        <div class="obj-a">Se você já sabe o básico do teclado, você é <strong>exatamente o aluno</strong> para quem esse método foi feito. Não precisa ser avançado. Precisa querer sair do lugar onde está.</div>
+      </details>
+      <details class="obj reveal">
+        <summary><span class="q-mark">?</span>"E se não funcionar pra mim?"<span class="plus">+</span></summary>
+        <div class="obj-a">Então você pede o dinheiro de volta. Simples assim. Você tem <strong>7 dias de garantia incondicional</strong> — sem perguntas, sem burocracia.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GARANTIA + URGÊNCIA ═══════════════ -->
+<section class="guarantee-section pad" data-screen-label="Garantia">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="seal">
+        <span class="big">7</span>
+        <span class="lbl">Dias de garantia</span>
+      </div>
+      <div>
+        <h3 class="h3">🛡️ Garantia total de 7 dias</h3>
+        <p>Compre, acesse, assista as primeiras aulas. Se por qualquer motivo você sentir que não é pra você — <span class="kicker">devolvemos 100% do seu dinheiro.</span> Sem formulários complicados. Sem justificativa. Sem julgamento.</p>
+        <p>Quem confia no próprio produto oferece garantia. E Murilo confia. <span class="kicker">O risco é todo nosso. A evolução é toda sua.</span></p>
+      </div>
+    </div>
+
+    <div class="urgency reveal">
+      <span class="pulse"></span>
+      <span id="urgency-text">Preço de lançamento — quando essa fase encerrar, o valor sobe. Garanta agora pelo menor preço.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="pad" data-screen-label="FAQ">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <p class="eyebrow" style="justify-content: center;">// Perguntas frequentes</p>
+      <h2 class="h2">Ainda tem dúvida?</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item reveal"><summary>Preciso saber ler partitura para fazer o curso?</summary><div class="faq-a">Não é obrigatório. O método é focado em prática musical — você vai aprender a ouvir, sentir e aplicar. Quem lê partitura avança mais rápido em alguns pontos, mas não é pré-requisito.</div></details>
+      <details class="faq-item reveal"><summary>O curso funciona para teclado de igreja?</summary><div class="faq-a">Sim. Murilo é músico de palco e de ministério. O método se aplica nos dois contextos — porque musicalidade e harmonia são universais.</div></details>
+      <details class="faq-item reveal"><summary>Como vou acessar o conteúdo?</summary><div class="faq-a">Assim que o pagamento for confirmado, você recebe o acesso por e-mail. O curso fica disponível por 12 meses na plataforma.</div></details>
+      <details class="faq-item reveal"><summary>Funciona para quem está enferrujado?</summary><div class="faq-a">Funciona para quem já teve contato com o instrumento e quer retomar com foco. Se você tocou em algum momento da vida e parou, esse método te coloca nos trilhos.</div></details>
+      <details class="faq-item reveal"><summary>Esse curso atualiza o conteúdo?</summary><div class="faq-a">Dentro do período de 12 meses de acesso, você recebe qualquer atualização de conteúdo sem custo adicional.</div></details>
+      <details class="faq-item reveal"><summary>E se eu não gostar?</summary><div class="faq-a">Você tem 7 dias de garantia incondicional. Peça o reembolso e devolvemos 100% sem perguntas.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA FINAL ═══════════════ -->
+<section class="final pad" data-screen-label="CTA final">
+  <div class="wrap final-inner">
+    <p class="eyebrow reveal" style="justify-content: center; margin-bottom: var(--s5);">// Chegou a hora</p>
+    <h2 class="h1 reveal">Pare de tocar<br>no <span class="green">automático.</span></h2>
+    <p class="reveal" style="margin-top: var(--s6);">Os tecladistas que se destacam não têm mais talento que você. <strong>Eles têm o mapa certo.</strong></p>
+    <p class="reveal">E agora esse mapa está disponível por R$197.</p>
+
+    <div class="cta-group reveal">
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="#oferta" class="btn btn-xl btn-pulse" style="width: auto;">Quero destravar meu teclado agora</a>
+        <a href="#whatsapp" class="btn btn-whats js-whats">
+          <svg class="whats-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.2 1.3-4.6-.3-.5C3.9 20.7 3.2 18.4 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.8 16 28.8zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.6-.2-.8.2-.2.4-.9 1.3-1.1 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="microcopy">
+        <span>Acesso imediato</span>
+        <span>12 meses de plataforma</span>
+        <span>Garantia de 7 dias</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PS ═══════════════ -->
+<section class="ps-section pad" data-screen-label="PS">
+  <div class="wrap ps">
+    <div class="ps-tag reveal">P.S.</div>
+    <p class="reveal">Você pode fechar essa página e continuar do mesmo jeito — repetindo os mesmos acordes, sentindo que poderia ir além mas sem saber como. <strong>Ou você pode tomar uma decisão diferente hoje.</strong></p>
+    <p class="reveal">Murilo Teixeira foi reconhecido pela Recording Academy como Latin Grammy Ambassador não porque tem talento sobrenatural — mas porque aprendeu os segredos certos, na prática, e passou anos refinando como ensiná-los. Agora ele está te oferecendo o caminho mais curto entre <strong>onde você está</strong> e <strong>onde quer estar</strong> no teclado.</p>
+    <p class="ps-price reveal">R$197 · 7 dias de garantia · 12 meses de acesso</p>
+    <div class="cta-group reveal" style="align-items: flex-start;">
+      <a href="#oferta" class="btn btn-xl btn-pulse" style="max-width: 460px;">Garantir minha vaga agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <img src="assets/logo.webp" alt="Conversando com as Teclas">
+    <div class="links">
+      <a href="#oferta">Garantir vaga</a>
+      <a href="#">Suporte</a>
+      <a href="#">Termos</a>
+      <a href="#">Privacidade</a>
+    </div>
+    <p class="copy">© 2026 Murilo Teixeira · Conversando com as Teclas. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ═══════════════ STICKY MOBILE CTA ═══════════════ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="info">
+    <div class="p">R$197</div>
+    <div class="s">Garantia 7 dias</div>
+  </div>
+  <a href="#oferta" class="btn btn-primary">Garantir vaga</a>
+</div>
+
+<!-- ═══════════════ FLOATING WHATSAPP ═══════════════ -->
+<a href="#whatsapp" class="whats-float js-whats" aria-label="Falar no WhatsApp">
+  <svg class="whats-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.2 1.3-4.6-.3-.5C3.9 20.7 3.2 18.4 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.8 16 28.8zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.6-.2-.8.2-.2.4-.9 1.3-1.1 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
+</a>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  const sticky = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero');
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 40);
+    sticky.classList.toggle('show', y > window.innerHeight * 0.9);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Hero entrance stagger (CSS animation handles visibility; this just offsets timing)
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    el.style.animationDelay = (i * 90) + 'ms';
+  });
+
+  // Close other FAQ/objection details on open (accordion behavior per group)
+  document.querySelectorAll('.faq-list, .obj-list').forEach((group) => {
+    const items = group.querySelectorAll('details');
+    items.forEach((d) => d.addEventListener('toggle', () => {
+      if (d.open) items.forEach((o) => { if (o !== d) o.open = false; });
+    }));
+  });
+
+  // ── WhatsApp: defina o número/URL aqui (a indicar) ──
+  // Ex.: 'https://wa.me/5511999999999'
+  const WHATSAPP_URL = '#';
+  document.querySelectorAll('.js-whats').forEach((a) => {
+    a.setAttribute('href', WHATSAPP_URL);
+    if (WHATSAPP_URL.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+</script>
+
+<!-- ═══════════════ TWEAKS (A/B test controls) ═══════════════ -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "headline": "A",
+  "urgency": "simples",
+  "accent": "#00E571"
+}/*EDITMODE-END*/;
+
+const HEADLINES = {
+  A: '<span class="line">Você sabe tocar. Mas por que,</span><span class="line">toda vez que improvisa,</span><span class="line green">tudo soa igual?</span>',
+  B: '<span class="line">O método que destrava</span><span class="line">tecladistas — e faz você</span><span class="line green">soar musical de verdade</span>',
+  C: '<span class="line">O segredo que separa quem</span><span class="line">"toca bem" de quem faz</span><span class="line green">todo mundo parar pra ouvir</span>'
+};
+const HEADLINE_LABELS = { A: 'A · Provocativa', B: 'B · Promessa', C: 'C · Curiosidade' };
+
+const URGENCY = {
+  lancamento: 'Preço de lançamento — quando essa fase encerrar, o valor sobe. Garanta agora pelo menor preço.',
+  bonus: 'Os bônus desta turma encerram em breve. Depois disso, o curso continua — os bônus, não.',
+  simples: 'Você pode continuar repetindo os mesmos padrões por mais um ano — ou começar a semana que vem soando diferente.'
+};
+const URGENCY_LABELS = { lancamento: 'Lançamento', bonus: 'Bônus', simples: 'Decisão' };
+
+function hexToRgb(hex) {
+  const h = hex.replace('#', '');
+  return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+}
+function lighten([r,g,b], amt) {
+  const m = (c) => Math.round(c + (255 - c) * amt);
+  return `rgb(${m(r)}, ${m(g)}, ${m(b)})`;
+}
+
+function TweaksApp() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    const h = document.querySelector('#headline');
+    if (h) h.innerHTML = HEADLINES[t.headline] || HEADLINES.B;
+  }, [t.headline]);
+
+  React.useEffect(() => {
+    const u = document.querySelector('#urgency-text');
+    if (u) u.textContent = URGENCY[t.urgency] || URGENCY.lancamento;
+  }, [t.urgency]);
+
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const rgb = hexToRgb(t.accent);
+    const s = rgb.join(',');
+    root.style.setProperty('--green', t.accent);
+    root.style.setProperty('--green-light', lighten(rgb, 0.32));
+    root.style.setProperty('--green-dim', `rgba(${s},0.10)`);
+    root.style.setProperty('--green-glow', `rgba(${s},0.25)`);
+    root.style.setProperty('--green-border', `rgba(${s},0.30)`);
+    root.style.setProperty('--shadow-green', `0 0 20px rgba(${s},0.35), 0 0 60px rgba(${s},0.12)`);
+  }, [t.accent]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Teste A/B" />
+      <TweakRadio label="Headline" value={t.headline}
+                  options={[{value:'A',label:'A · Provocativa'},{value:'B',label:'B · Promessa'},{value:'C',label:'C · Curiosidade'}]}
+                  onChange={(v) => setTweak('headline', v)} />
+      <TweakRadio label="Urgência" value={t.urgency}
+                  options={[{value:'lancamento',label:'Lançamento'},{value:'bonus',label:'Bônus'},{value:'simples',label:'Decisão'}]}
+                  onChange={(v) => setTweak('urgency', v)} />
+      <TweakSection label="Identidade" />
+      <TweakColor label="Cor de acento" value={t.accent}
+                  options={['#00E571', '#FF7A45', '#7C9BFF', '#FFC53D']}
+                  onChange={(v) => setTweak('accent', v)} />
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
+
+
+
+<script>
+  (function () {
+    function go() { setTimeout(function () { window.print(); }, 600); }
+    if (document.fonts && document.fonts.ready) {
+      Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 3000); })]).then(go);
+    } else {
+      window.addEventListener('load', go);
+    }
+  })();
+</script>
+</body>
+</html>
