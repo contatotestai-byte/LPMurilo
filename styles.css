@@ -654,7 +654,7 @@ section { position: relative; }
 /* ── Seção com imagem de fundo (Proposta de valor) ── */
 .section-bg {
   position: relative;
-  background-image: url('assets/section-bg.png');
+  background-image: url('assets/section-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
