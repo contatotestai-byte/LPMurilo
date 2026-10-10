@@ -133,6 +133,17 @@ alt=""/></noscript>
     .vsl-unmute { animation: none; }
   }
 
+  /* Botão de compra abaixo do vídeo */
+  .vsl-cta {
+    max-width: 860px;
+    margin: clamp(1.25rem, 3vw, 2rem) auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s3);
+  }
+  .vsl-cta .btn { width: 100%; max-width: 520px; }
+
   /* ── Celular ── */
   @media (max-width: 760px) {
     .vsl-hero { padding: var(--s5) var(--s4) var(--s8); }
@@ -223,6 +234,16 @@ alt=""/></noscript>
       <div class="vsl-bar-track">
         <div class="vsl-bar-fill" id="vslBarFill"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Botão de compra logo abaixo do vídeo -->
+  <div class="vsl-cta">
+    <a href="https://pay.hotmart.com/I101711319L?checkoutMode=10" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-pulse">Quero destravar meu teclado agora</a>
+    <div class="microcopy">
+      <span>Acesso imediato</span>
+      <span>Acesso vitalício</span>
+      <span>Garantia de 7 dias</span>
     </div>
   </div>
 </header>
