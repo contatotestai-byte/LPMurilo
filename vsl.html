@@ -143,23 +143,24 @@ alt=""/></noscript>
   .vsl-shield.is-unmuted .vsl-unmute,
   .vsl-shield.is-playing .vsl-unmute { display: none; }
 
-  /* Barra de progresso (acompanha o vídeo) */
+  /* Barra de progresso (por cima do vídeo, no topo) */
   .vsl-bar-wrap {
-    max-width: 860px;
-    margin: var(--s4) auto 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    pointer-events: none;
   }
   .vsl-bar-track {
     width: 100%;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--bg-3);
-    border: 1px solid var(--border-md);
+    height: clamp(5px, 1vw, 8px);
+    background: rgba(8,10,9,0.55);
     overflow: hidden;
   }
   .vsl-bar-fill {
     width: 0%;
     height: 100%;
-    border-radius: inherit;
     background: linear-gradient(90deg, var(--green-dark), var(--green));
     box-shadow: 0 0 12px var(--green-glow);
   }
@@ -189,12 +190,12 @@ alt=""/></noscript>
       <span class="vsl-unmute"><span class="ico">🔊</span>Clique para ativar o som</span>
       <span class="vsl-paused" aria-hidden="true">▶</span>
     </button>
-  </div>
 
-  <!-- Barra de progresso do vídeo -->
-  <div class="vsl-bar-wrap" aria-hidden="true">
-    <div class="vsl-bar-track">
-      <div class="vsl-bar-fill" id="vslBarFill"></div>
+    <!-- Barra de progresso (falsa: enche rápido no começo) -->
+    <div class="vsl-bar-wrap" aria-hidden="true">
+      <div class="vsl-bar-track">
+        <div class="vsl-bar-fill" id="vslBarFill"></div>
+      </div>
     </div>
   </div>
 </header>
@@ -500,10 +501,17 @@ alt=""/></noscript>
 
     player.getDuration().then((d) => { duration = d; }).catch(() => {});
 
-    // barra acompanha o vídeo
+    // Barra falsa: enche rápido no começo e desacelera até chegar a 100% no fim.
+    // EXPOENTE maior = começo mais rápido (1 = barra real, sem truque).
+    const EXPOENTE = 2;
+    const fake = (p) => 1 - Math.pow(1 - p, EXPOENTE);
+
     player.on('timeupdate', (data) => {
       if (!duration) duration = data.duration || 0;
-      if (duration && fill) fill.style.width = Math.min(100, (data.seconds / duration) * 100) + '%';
+      if (duration && fill) {
+        const p = Math.min(1, data.seconds / duration);
+        fill.style.width = (fake(p) * 100) + '%';
+      }
     });
     player.on('play',  () => { shield.classList.remove('is-paused'); shield.classList.add('is-playing'); });
     player.on('pause', () => { if (unmuted) shield.classList.add('is-paused'); });
