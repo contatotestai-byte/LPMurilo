@@ -615,6 +615,17 @@ alt=""/></noscript>
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+      // WhatsApp flutuante some (no celular) enquanto um botão de compra está visível
+      const whats = document.querySelector('.whats-float');
+      if (whats) {
+        const ctasVisiveis = new Set();
+        const ioCta = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { e.isIntersecting ? ctasVisiveis.add(e.target) : ctasVisiveis.delete(e.target); });
+          whats.classList.toggle('whats-hide', ctasVisiveis.size > 0);
+        });
+        document.querySelectorAll('.btn-pulse').forEach((b) => ioCta.observe(b));
+      }
+
       document.querySelectorAll('.faq-list, .obj-list').forEach((group) => {
         const items = group.querySelectorAll('details');
         items.forEach((d) => d.addEventListener('toggle', () => {

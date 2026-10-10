@@ -619,7 +619,6 @@ section { position: relative; }
   background: var(--whats); color: #fff; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 0 6px rgba(37,211,102,0.14);
   transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
-  animation: whatsPulse 2.8s ease-in-out infinite;
 }
 .whats-float .whats-ico { width: 30px; height: 30px; }
 .whats-float:hover { transform: scale(1.08); box-shadow: 0 10px 34px rgba(0,0,0,0.5), 0 0 0 10px rgba(37,211,102,0.18); }
@@ -637,7 +636,7 @@ section { position: relative; }
   100% { transform: scale(1.5); opacity: 0; }
 }
 @media (max-width: 760px) { .whats-float { bottom: calc(64px + 1rem); width: 52px; height: 52px; } .whats-float .whats-ico { width: 26px; height: 26px; } }
-@media (prefers-reduced-motion: reduce) { .whats-float { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .whats-float::after { animation: none; } }
 
 /* ============================================================
    MÓDULOS DO CURSO
@@ -687,4 +686,23 @@ section { position: relative; }
 .section-bg > * {
   position: relative;
   z-index: 1;
+}
+
+/* ── Telas de toque: sem efeitos de hover ──
+   No celular o :hover "gruda" quando o dedo levanta e o elemento dá um pulo
+   para cima ao parar de rolar. */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-xl:hover,
+  .learn-card:hover,
+  .testi:hover,
+  .module:hover,
+  .whats-float:hover { transform: none; }
+  .m-shot:hover img { transform: none; }
+}
+
+/* ── WhatsApp flutuante some enquanto um botão de compra está na tela (celular) ── */
+@media (max-width: 760px) {
+  .whats-float { transition: opacity .25s ease, transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out); }
+  .whats-float.whats-hide { opacity: 0; pointer-events: none; }
 }
