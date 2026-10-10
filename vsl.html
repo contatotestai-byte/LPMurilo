@@ -59,6 +59,7 @@ alt=""/></noscript>
     margin: 0 auto var(--s4);
   }
   .vsl-headline .green { color: var(--green); }
+  .vsl-headline { text-transform: uppercase; }
   .vsl-sub {
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.2rem);
@@ -131,6 +132,25 @@ alt=""/></noscript>
   @media (prefers-reduced-motion: reduce) {
     .vsl-unmute { animation: none; }
   }
+
+  /* ── Celular ── */
+  @media (max-width: 760px) {
+    .vsl-hero { padding: var(--s5) var(--s4) var(--s8); }
+    .vsl-logo { width: clamp(130px, 38vw, 170px); margin-bottom: var(--s4); }
+    .vsl-headline { font-size: clamp(1.35rem, 6.4vw, 1.9rem); margin-bottom: var(--s3); }
+    .vsl-sub { font-size: 0.95rem; margin-bottom: var(--s4); }
+    /* vídeo de ponta a ponta, sem moldura */
+    .vsl-video-wrap {
+      width: auto;
+      max-width: none;
+      margin-inline: calc(-1 * var(--s4));
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+    .vsl-unmute { padding: var(--s3) var(--s4); gap: var(--s2); max-width: 82%; }
+    .vsl-unmute .ico { font-size: 2rem; }
+  }
   .vsl-unmute .ico { font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1; color: var(--green); }
   /* Ícone de play quando o vídeo está pausado */
   .vsl-paused {
@@ -180,8 +200,8 @@ alt=""/></noscript>
   <img src="assets/logo.webp" alt="Conversando com as Teclas — por Murilo Teixeira" class="vsl-logo" width="645" height="387" fetchpriority="high">
 
   <h1 class="vsl-headline">
-    O método que destrava tecladistas —<br>
-    e faz você <span class="green">soar musical de verdade</span>
+    O MÉTODO QUE DESTRAVA TECLADISTAS<br>
+    E FAZ VOCÊ <span class="green">SOAR MUSICAL DE VERDADE</span>
   </h1>
   <p class="vsl-sub">Assista ao vídeo abaixo até o final para entender como.</p>
 
