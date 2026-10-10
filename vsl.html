@@ -140,13 +140,12 @@ alt=""/></noscript>
     padding-left: 0.15em;
   }
   .vsl-shield.is-paused .vsl-paused { display: flex; }
-  .vsl-shield.is-unmuted .vsl-unmute,
-  .vsl-shield.is-playing .vsl-unmute { display: none; }
+  .vsl-shield.is-unmuted .vsl-unmute { display: none; }
 
-  /* Barra de progresso (por cima do vídeo, no topo) */
+  /* Barra de progresso (por cima do vídeo, na base) */
   .vsl-bar-wrap {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     z-index: 3;
@@ -513,7 +512,7 @@ alt=""/></noscript>
         fill.style.width = (fake(p) * 100) + '%';
       }
     });
-    player.on('play',  () => { shield.classList.remove('is-paused'); shield.classList.add('is-playing'); });
+    player.on('play',  () => { shield.classList.remove('is-paused'); });
     player.on('pause', () => { if (unmuted) shield.classList.add('is-paused'); });
     player.on('ended', () => { if (fill) fill.style.width = '100%'; shield.classList.add('is-paused'); });
 
