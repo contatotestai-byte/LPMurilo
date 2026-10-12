@@ -144,6 +144,18 @@ alt=""/></noscript>
   }
   .vsl-cta .btn { width: 100%; max-width: 520px; }
 
+  /* WhatsApp flutuante: escondido no início, aparece só depois de rolar além da oferta */
+  .whats-float {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
+  }
+  .whats-float.whats-show { opacity: 1; pointer-events: auto; }
+  /* no celular, continua saindo de cima dos botões de compra */
+  @media (max-width: 760px) {
+    .whats-float.whats-show.whats-hide { opacity: 0; pointer-events: none; }
+  }
+
   /* ── Celular ── */
   @media (max-width: 760px) {
     .vsl-hero { padding: var(--s5) var(--s4) var(--s8); }
@@ -615,9 +627,21 @@ alt=""/></noscript>
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-      // WhatsApp flutuante some (no celular) enquanto um botão de compra está visível
+      // WhatsApp flutuante: só aparece depois que a pessoa rolou além da oferta
+      // (e, no celular, some enquanto um botão de compra está visível)
       const whats = document.querySelector('.whats-float');
-      if (whats) {
+      const oferta = document.getElementById('oferta');
+      if (whats && oferta) {
+        // A margem inferior enorme faz a oferta contar como "visível" sempre que
+        // qualquer parte dela estiver da borda de cima da tela para baixo. Assim o
+        // botão só aparece quando a oferta ficou inteira para trás, mesmo se a
+        // pessoa pular a rolagem (ex.: voltar ao topo de uma vez).
+        const ioOferta = new IntersectionObserver((entries) => {
+          const e = entries[entries.length - 1];
+          whats.classList.toggle('whats-show', !e.isIntersecting && e.boundingClientRect.height > 0);
+        }, { rootMargin: '0px 0px 100000px 0px' });
+        ioOferta.observe(oferta);
+
         const ctasVisiveis = new Set();
         const ioCta = new IntersectionObserver((entries) => {
           entries.forEach((e) => { e.isIntersecting ? ctasVisiveis.add(e.target) : ctasVisiveis.delete(e.target); });
