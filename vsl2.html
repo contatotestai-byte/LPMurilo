@@ -146,6 +146,22 @@ alt=""/></noscript>
 
   /* Oferta bloqueada até o vídeo passar de 6:40 (liberada via JS) */
   .vsl-locked:not(.vsl-unlocked) { display: none; }
+  .vsl-unlock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s2);
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: var(--track-wider);
+    text-transform: uppercase;
+    box-shadow: 0 0 20px var(--green-glow);
+  }
   .vsl-locked.vsl-unlocked { animation: vslUnlock .6s ease-out both; }
   @keyframes vslUnlock {
     from { opacity: 0; transform: translateY(14px); }
@@ -262,6 +278,7 @@ alt=""/></noscript>
 
   <!-- Botão de compra logo abaixo do vídeo -->
   <div class="vsl-cta vsl-locked">
+    <div class="vsl-unlock-badge"><span aria-hidden="true">🔓</span> Oferta desbloqueada</div>
     <a href="https://pay.hotmart.com/I101711319L?checkoutMode=10" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-pulse">Quero destravar meu teclado agora</a>
     <div class="microcopy">
       <span>Acesso imediato</span>
@@ -595,6 +612,21 @@ alt=""/></noscript>
     let unmuted = false;
     let duration = 0;
 
+    // Fim do vídeo: o Vimeo só mostra a tela de "mais vídeos do canal" quando o vídeo
+    // TERMINA. Por isso pausamos um instante antes do final (o 'ended' nunca dispara).
+    // Se mesmo assim ele disparar, o player é escondido para a tela não aparecer.
+    const MARGEM_FIM = 0.5; // segundos antes do final
+    let finalizado = false;
+    let reiniciando = false;
+    const mostrarFim = () => {
+      if (finalizado) return;
+      finalizado = true;
+      if (typeof liberar === 'function') liberar();
+      if (fill) fill.style.width = '100%';
+      // no fim, some o aviso de som e fica só o ícone de "assistir de novo"
+      shield.classList.add('is-unmuted', 'is-paused');
+    };
+
     player.getDuration().then((d) => { duration = d; }).catch(() => {});
 
     // Barra falsa: enche rápido no começo e desacelera até chegar a 100% no fim.
@@ -603,6 +635,10 @@ alt=""/></noscript>
     const fake = (p) => 1 - Math.pow(1 - p, EXPOENTE);
 
     player.on('timeupdate', (data) => {
+      if (!finalizado && !reiniciando && data.duration && data.seconds >= data.duration - MARGEM_FIM) {
+        player.pause().catch(() => {});
+        mostrarFim();
+      }
       if (data.seconds >= UNLOCK_SECONDS) liberar();
       if (!duration) duration = data.duration || 0;
       if (duration && fill) {
@@ -610,12 +646,21 @@ alt=""/></noscript>
         fill.style.width = (fake(p) * 100) + '%';
       }
     });
-    player.on('play',  () => { shield.classList.remove('is-paused'); });
+    player.on('play',  () => { shield.classList.remove('is-paused'); reiniciando = false; });
     player.on('pause', () => { if (unmuted) shield.classList.add('is-paused'); });
-    player.on('ended', () => { liberar(); if (fill) fill.style.width = '100%'; shield.classList.add('is-paused'); });
+    player.on('ended', () => { mostrarFim(); iframe.style.visibility = 'hidden'; });
 
     shield.addEventListener('click', async () => {
       try {
+        if (finalizado) {
+          // recomeçar depois do fim
+          reiniciando = true;
+          finalizado = false;
+          iframe.style.visibility = '';
+          shield.classList.remove('is-paused');
+          await player.setCurrentTime(0);
+          if (fill) fill.style.width = '0%';
+        }
         if (!unmuted) {
           // 1º clique: liga o som e reinicia do começo
           unmuted = true;
